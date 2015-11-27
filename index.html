@@ -1,20 +1,17 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>Challenger</title>
   </head>
-  <body>
-    <input type="text" id="name" value="Player"/><button id="setName">Set Name</button>
+  <body ng-app="challengerApp">
     <ul id="messages"></ul>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.0-beta.2/angular-route.min.js"></script>
+
     <script>
       var socket = io();
-
-      $("#setName").click(function(){
-        socket.emit('set name', $('#name').val());
-      })
-      
       socket.on('message', function(msg){
         $('#messages').append($('<li>').text(msg));
       });

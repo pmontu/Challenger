@@ -9,6 +9,7 @@ var favicon = require('serve-favicon');
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(bodyParser());
+app.use('/static', express.static('public'));
 
 app.get('/', function(req, res){
   res.sendFile('index.html', { root: __dirname });
@@ -17,15 +18,12 @@ app.get('/', function(req, res){
 var clients = {};
 
 io.on('connection', function(socket){
-  clients[socket.id] = {socket: socket};
-  console.log('a user connected');
+  console.log('user connected');
+
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
-  socket.on('set name', function(name){
-  	clients[socket.id]["name"] = name;
-  	io.emit('message', "Player " + socket.id + " set name to " + name);
-  });
+
 });
 
 app.post('/', function(req, res){
