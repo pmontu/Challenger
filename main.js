@@ -1,12 +1,29 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-
 var app = express();
 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+var favicon = require('serve-favicon');
+
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(bodyParser());
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+app.get('/', function(req, res){
+  res.sendFile('index.html', { root: __dirname });
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+  	socket.broadcast.emit('hi');
+    console.log('user disconnected');
+  });
+  socket.on('chat message', function(msg){
+  	io.emit('chat message', msg);
+    console.log('message: ' + msg);
+  });
 });
 
 app.post('/', function(req, res){
@@ -15,9 +32,7 @@ app.post('/', function(req, res){
 	res.send("test: " + userName);
 });
 
-var server = app.listen(8081, function () {
-  var host = server.address().address;
-  var port = server.address().port;
 
-  console.log('Example app listening at http://%s:%s', host, port);
+http.listen(3000, function(){
+  console.log('listening on *:3000');
 });
