@@ -1,12 +1,5 @@
-npm install express --save
+npm install
 sudo npm install -g nodemon
-npm install body-parser
-npm install --save socket.io
 
-npm install mongodb
-npm install mongoose
-
+run server
 nodemon main.js
-
-$ mongo
-> use challenger_documents

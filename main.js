@@ -8,24 +8,27 @@ var io = require('socket.io')(http);
 var favicon = require('serve-favicon');
 
 var mongodb = require('mongodb');
-var MongoClient = mongodb.MongoClient;
-var url = 'mongodb://localhost:27017/challenger_documents';
+var monk = require('monk');
+var db = monk('localhost:27017/challenger_documents');
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(bodyParser());
 app.use('/static', express.static('public'));
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
 
 app.get('/', function(req, res){
   res.sendFile('index.html', { root: __dirname });
 });
 
-MongoClient.connect(url, function (err, db) {
-  if (err) {
-    console.log('Unable to connect to the mongoDB server. Error:', err);
-  } else {
-    //HURRAY!! We are connected. :)
-    console.log('Connection established to', url);
-    }
+app.get('/questions', function(req, res) {
+    var db = req.db;
+    var collection = db.get('question');
+    collection.find({},{},function(e,docs){
+        res.send(docs)
+    });
 });
 
 var clients = {};
