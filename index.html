@@ -4,21 +4,18 @@
     <title>Socket.IO chat</title>
   </head>
   <body>
+    <input type="text" id="name" value="Player"/><button id="setName">Set Name</button>
     <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       var socket = io();
-      $('form').submit(function(){
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
-      });
+
+      $("#setName").click(function(){
+        socket.emit('set name', $('#name').val());
+      })
       
-      socket.on('chat message', function(msg){
+      socket.on('message', function(msg){
         $('#messages').append($('<li>').text(msg));
       });
     </script>

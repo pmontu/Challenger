@@ -14,15 +14,17 @@ app.get('/', function(req, res){
   res.sendFile('index.html', { root: __dirname });
 });
 
+var clients = {};
+
 io.on('connection', function(socket){
+  clients[socket.id] = {socket: socket};
   console.log('a user connected');
   socket.on('disconnect', function(){
-  	socket.broadcast.emit('hi');
     console.log('user disconnected');
   });
-  socket.on('chat message', function(msg){
-  	io.emit('chat message', msg);
-    console.log('message: ' + msg);
+  socket.on('set name', function(name){
+  	clients[socket.id]["name"] = name;
+  	io.emit('message', "Player " + socket.id + " set name to " + name);
   });
 });
 
