@@ -11,7 +11,6 @@ var mongodb = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/challenger_documents');
 
-app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(bodyParser());
 app.use('/static', express.static('public'));
 app.use(function(req,res,next){
@@ -20,7 +19,7 @@ app.use(function(req,res,next){
 });
 
 app.get('/', function(req, res){
-  res.sendFile('index.html', { root: __dirname });
+  res.sendFile('public/index.html', { root: __dirname });
 });
 
 app.get('/questions', function(req, res) {
