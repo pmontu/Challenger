@@ -16,7 +16,10 @@
         $('#messages').append($('<li>').text(msg));
       });
       socket.on('create room', function(room){
-        $('#messages').append($('<li>').text(room._id));
+        $('#messages').append($('<li>').text(room.owner + " - " + room._id));
+      });
+      socket.on('join room', function(playerid){
+        $('#messages').append($('<li>').text(playerid+" joined"));
       });
       $("#btnCreateRoom").click(function(){
         socket.emit("create room");
