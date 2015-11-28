@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <title>Challenger</title>
+</head>
+<body ng-app="challengerApp">
+  <button id="btnCreateRoom">Create Room</button><br/>
+  <input type="text" id="roomid"/><button id="btnJoinRoom">Join Room</button>
+  <ul id="messages"></ul>
+  <ul id="questions"></ul>
+  <button id="btnSelect">Send</button>
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+    var socket = io();
+    socket.on('message', function(msg){
+      $('#messages').append($('<li>').text(msg));
+    });
+    socket.on('create room', function(room){
+      $('#messages').append($('<li>').text(room.owner + " - " + room._id));
+    });
+    socket.on('join room', function(data){
+      $('#questions').html('')
+      $.each(data.questions, function(i,q){
+        $('#questions').append($('<li>').html('<input name="selection" type="checkbox" value="'+q._id+'">' + q.question));
+      })
+      $('#messages').append($('<li>').text(data.playerid+" joined"));
+    });
+    socket.on('ask question', function(data){
+      alert(data)
+    })
+    $("#btnCreateRoom").click(function(){
+      socket.emit("create room");
+    })
+    $("#btnJoinRoom").click(function(){
+      socket.emit("join room", $("#roomid").val());
+    })
+    $("#btnSelect").click(function(){
+      var sel = new Array();
+
+      $("#questions").find("input:checked").each(function (i, ob) { 
+        sel.push($(ob).val());
+      });
+      socket.emit("ask question",sel)
+    })
+  </script>
+</body>
+</html>
