@@ -1,0 +1,6 @@
+http://localhost:3000/create_room
+{"status":0,"_id":"565931615eb0e26f158f2779"}
+
+http://localhost:3000/rooms
+[{"_id":"5659244597b0201412642f50","state":0},{"_id":"56592fc8507bd3bf14ad167f","state":0},{"_id":"56593142d6e13e55159db3b1","status":0},{"_id":"565931615eb0e26f158f2779","status":0}]
+
