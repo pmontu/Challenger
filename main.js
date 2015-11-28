@@ -5,8 +5,6 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var favicon = require('serve-favicon');
-
 var mongodb = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/challenger_documents');
@@ -28,7 +26,7 @@ app.get('/questions', function(req, res) {
     collection.find({},{},function(e,docs){
         res.send(docs)
     });
-});*/
+});
 
 app.get('/rooms', function(req, res) {
     console.log("Lising Rooms")
@@ -36,7 +34,7 @@ app.get('/rooms', function(req, res) {
     room.find({},{},function(e,docs){
         res.send(docs)
     });
-});
+});*/
 
 var clients = {};
 
@@ -83,8 +81,14 @@ io.on('connection', function(socket){
                 room.update({_id:roomid},{$set:{status:1}},function(e,d){console.log(d)});
                 owner = clients[docs[0].owner]
                 console.log(owner.id)
-                owner.emit("join room", socket.id)
-                socket.emit("message", "waiting for owner to select question")
+
+                var question = db.get('question');
+                question.find({},{},function(e,docs){
+                    console.log(docs)
+                    data = {playerid: socket.id, questions:docs}
+                    owner.emit("join room", data)
+                    socket.emit("message", "waiting for owner to select question")
+                });
             } else {
                 socket.emit("message", "Room not available")
             }

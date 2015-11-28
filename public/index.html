@@ -7,9 +7,9 @@
   <button id="btnCreateRoom">Create Room</button><br/>
   <input type="text" id="roomid"/><button id="btnJoinRoom">Join Room</button>
     <ul id="messages"></ul>
+    <ul id="questions"></ul>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-
     <script>
       var socket = io();
       socket.on('message', function(msg){
@@ -18,8 +18,12 @@
       socket.on('create room', function(room){
         $('#messages').append($('<li>').text(room.owner + " - " + room._id));
       });
-      socket.on('join room', function(playerid){
-        $('#messages').append($('<li>').text(playerid+" joined"));
+      socket.on('join room', function(data){
+        $('#questions').html('')
+        $.each(data.questions, function(i,q){
+          $('#questions').append($('<li>').text(q.question));
+        })
+        $('#messages').append($('<li>').text(data.playerid+" joined"));
       });
       $("#btnCreateRoom").click(function(){
         socket.emit("create room");
