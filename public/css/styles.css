@@ -50,11 +50,18 @@ html, body {
         outline: 5px auto -webkit-focus-ring-color;
         outline-offset: -2px;
     }
-
+    #btntestComplete{
+    cursor: pointer;
+    padding: 4px;
+    border: 2px solid #fff;
+    background: #4285f4;
+    color: #fff;        
+    }
     .btn:hover,
     .btn:focus {
-        color: #AE37B2;
+        color: #1f4d8c;
         text-decoration: none;
+        outline: none;
     }
 
     .btn:active,
@@ -77,9 +84,9 @@ html, body {
         background: url(../images/btn-bg.png) no-repeat 0 0;
     }
 
-    .btn-left {
+    a.btn-left {
         margin: 0 0 0 5%;
-        padding: 0px 5px;
+        padding: 10px 5px 0 0;
         text-align: center;
         font-size: 22px;
         font-weight: bold;
@@ -88,11 +95,12 @@ html, body {
         float: left;
         border: none;
         cursor: pointer;
+        text-decoration: none;
     }
 
-    .btn-right {
+    a.btn-right {
         margin: 0 5% 0 0;
-        padding: 0px 5px;
+        padding: 10px 0 0 0px;
         text-align: center;
         font-size: 22px;
         font-weight: bold;
@@ -101,6 +109,11 @@ html, body {
         float: right;
         border: none;
         cursor: pointer;
+        text-decoration: none;
+    }
+
+    a.btn-left:hover, a.btn-right:hover {
+        color: #ffe706
     }
 /* ******************************
           TITLE SCREEN
@@ -154,20 +167,20 @@ html, body {
      (create-game-template)
      ****************************** */
 
-     .createGameWrapper, .joinGameWrapper, .gameOver {
+     .createGameWrapper, .joinGameWrapper, .gameOver, #playerScores, #ulAnswers {
         font-family: 'Calibri', 'Quicksand', sans-serif;
         margin: 0 auto;
         text-align: center;
         background-color: #fff;
         height: 100%
     }
-    .createGameWrapper .main-short-banner, .joinGameWrapper .main-short-banner{
+    .createGameWrapper .main-short-banner, .joinGameWrapper .main-short-banner, #playerScores .main-short-banner, #ulAnswers .main-short-banner {
         background:  url(../images/inner-small-banner-bg.jpg) no-repeat 0 0;
         background-size: cover;
         height: auto;
         margin: 0px auto 40px auto;
     }
-    .createGameWrapper .main-short-banner .inner-page-mini-logo, .joinGameWrapper .main-short-banner .inner-page-mini-logo {
+    .createGameWrapper .main-short-banner .inner-page-mini-logo, .joinGameWrapper .main-short-banner .inner-page-mini-logo, #playerScores .main-short-banner .inner-page-mini-logo, #ulAnswers .main-short-banner .inner-page-mini-logo {
         width:29%;
         text-align:center;
         margin:0px auto;
@@ -179,7 +192,7 @@ html, body {
     }
 
     .createGameWrapper{
-        color: #AE37B2;
+        color: #ff0000;
         font-weight: 300;
     }
 
@@ -190,7 +203,7 @@ html, body {
     .info input {
         text-align: center;
         padding: 10px;
-        width: 200px;
+        width: 360px;
         height: 60px;
         font-family: 'Calibri', 'Quicksand', sans-serif;
         color: #A22FB0;
@@ -265,6 +278,7 @@ html, body {
         padding:5px 20px;
         font-family: 'Calibri';
         cursor: pointer;
+        text-decoration: none;
     }
 
     #playerWaitingMessage {
@@ -287,24 +301,57 @@ html, body {
           ****************************** */
 
 
-          #ulAnswers {
+         #ulAnswers {
             width: 100%;
             height: 100%;
             margin: 0;
             padding: 0;
+            min-height: 100px;
+            overflow-y: scroll;
+            overflow-x: hidden;            
         }
 
         #ulAnswers li {
             width: 100%;
-            height: 16.6%;
+            display: inline-block;
+            /*height: 16.6%;*/
+            cursor: auto;
+        }
+
+        .question-bank-container {
+            max-width: 80%;
+            margin:0 auto 25px auto;
+            padding: 0px 30px;
+        }
+
+        .question-box {
+            width:100%;
+            margin:0 0 10px 0;
+            padding: 0px;
+            float: left;
+            text-align: left;
+            color: #699de1;
+            font-size: 20px;
+            font-weight: 400;
+        }
+        .answer-box {
+            width: 100%;
+            margin:0px;
+            padding: 0 0 0 30px;
+            float: left;
+            text-align: left;
+            color: #699de1;
+            font-size: 18px;
+            font-weight: 400;
         }
 
         .btnAnswer {
             width: 100%;
-            border-bottom: 1px dotted white;
+            border-bottom: 1px dotted #82ace6;
             font-weight: 400;
             font-size: 3em;
-            color: #AE37B2;
+            color: #82ace6;
+            background-color: #dfecfe;
         }
 
 
@@ -343,12 +390,12 @@ html, body {
         text-transform: uppercase;
     }
 
-    #playerScores {
+    /*#playerScores {
         height: 10%;
         width: 100%;
         position: fixed;
         top: 0;
-    }
+    }*/
 
     .playerScore {
         width: 50%;
@@ -357,6 +404,12 @@ html, body {
         font-family: 'Calibri', 'Quicksand', sans-serif;
         font-weight: 400;
         height: 100%;
+    }
+
+    #playerScores{
+    min-height: 100px;
+    overflow-y: scroll;
+    overflow-x: hidden;
     }
 
     .playerScore span {
@@ -405,6 +458,23 @@ html, body {
         position: fixed;
         bottom: 0;
     }
+    .send-test-btn {
+        background-color: #fff !important;
+        border: 1px solid #82ace6;
+        padding: 10px;
+    }
+    .send-test-btn a {
+        color: #3667aa;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .send-test-btn a:hover {
+        color: #82ace6;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
     @media (max-width:480px) {
        .titleWrapper {
@@ -418,7 +488,7 @@ html, body {
         height: 125px;
         padding: 50px 20px;
     }
-    .createGameWrapper .main-short-banner, .joinGameWrapper .main-short-banner {
+    .createGameWrapper .main-short-banner, .joinGameWrapper .main-short-banner, #playerScores .main-short-banner {
         margin-bottom: 25px;
         height: auto;
     }
@@ -428,7 +498,7 @@ html, body {
         font-size: 27px;
         padding: 0px 20px;
     }
-    .createGameWrapper .main-short-banner .inner-page-mini-logo, .joinGameWrapper .main-short-banner .inner-page-mini-logo {
+    .createGameWrapper .main-short-banner .inner-page-mini-logo, .joinGameWrapper .main-short-banner .inner-page-mini-logo, #playerScores .main-short-banner .inner-page-mini-logo {
         width:87%;
         text-align:center;
         margin:0px auto;
@@ -437,3 +507,4 @@ html, body {
         width: 88%;
     }
 }
+

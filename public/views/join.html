@@ -7,11 +7,11 @@
 
             <div class="info player-key-box">
                 <label for="inputGameId">Player Key:</label>
-                <input id="inputGameId" type="text"/>123
+                <input id="inputGameId" type="text" ng-model="roomId" />
             </div>
 
-            <div class="info buttons  player-key-box">
-                <a id="btnStart" class="begin-btn-img">BEGIN</a>
+            <div class="info buttons player-key-box">
+                <a id="btnStart" ng-click = "joingame();" class="begin-btn-img">BEGIN</a>
                 <div id="playerWaitingMessage"></div>
             </div>
         </div>
