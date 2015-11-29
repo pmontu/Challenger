@@ -5,7 +5,8 @@
 </head>
 <body ng-app="challengerApp">
   <button id="btnCreateRoom">Create Room</button><br/>
-  <input type="text" id="roomid"/><button id="btnJoinRoom">Join Room</button>
+  <input type="text" id="roomid"/><button id="btnJoinRoom">Join Room</button><br>
+  <input type="text" id="chat"/><button id="btnChat">Send Message</button>
   <ul id="messages"></ul>
   <ul id="questions"></ul>
   <button id="btnSelect">Send</button>
@@ -13,6 +14,10 @@
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script>
     var socket = io();
+
+    socket.on("chat", function(msg){
+      $('#messages').append($('<li>').text(msg));
+    })
     socket.on('message', function(msg){
       $('#messages').append($('<li>').text(msg));
     });
@@ -26,8 +31,9 @@
       })
       $('#messages').append($('<li>').text(data.playerid+" joined"));
     });
-    socket.on('ask question', function(data){
-      alert(data)
+    socket.on('answer', function(questionid){
+      //$('#questions').html('')
+      alert(questionid)
     })
     $("#btnCreateRoom").click(function(){
       socket.emit("create room");
@@ -35,12 +41,16 @@
     $("#btnJoinRoom").click(function(){
       socket.emit("join room", $("#roomid").val());
     })
+    $("#btnChat").click(function(){
+      socket.emit("chat", $("#chat").val());
+    })
     $("#btnSelect").click(function(){
       var sel = new Array();
 
       $("#questions").find("input:checked").each(function (i, ob) { 
         sel.push($(ob).val());
       });
+      $('#questions').html('')
       socket.emit("ask question",sel)
     })
   </script>

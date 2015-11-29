@@ -8,9 +8,11 @@ var io = require('socket.io')(http);
 var mongodb = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/challenger_documents');
+var ObjectId = mongodb.ObjectID;
 
 var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/challenger_documents';
+
 
 
 var allowCrossDomain = function(req, res, next) {
@@ -71,6 +73,12 @@ io.on('connection', function(socket){
     console.log('user connected');
     clients[socket.id] = socket;
 
+    socket.broadcast.emit("chat", "user connected")
+
+    socket.on("chat", function(message){
+        socket.broadcast.emit("chat", message)
+    })
+
     socket.on('disconnect', function(){
         console.log('user disconnected');
         delete clients[socket.id]
@@ -81,6 +89,7 @@ io.on('connection', function(socket){
         var room = db.get('room');
         room.find({owner: socket.id}, {}, function (e,docs) {
             if(docs.length == 0){
+                // STATUS 0 FOR OWNER CREATED ROOM
                 room.insert({
                     "owner": socket.id,
                     "status" : 0
@@ -107,13 +116,17 @@ io.on('connection', function(socket){
         console.log(socket.id + " wants to join room " + roomid)
         room.find({_id: roomid, status:0}, {}, function(e, docs){
             if(docs.length != 0){
+                // STATUS 1 for PLAYER JOINED OWNER
                 room.update({_id:roomid},{$set:{status:1,player:socket.id}},function(e,d){});
                 owner = clients[docs[0].owner]
+                
                 var question = db.get('question');
                 question.find({},{},function(e,docs){
                     data = {playerid: socket.id, questions:docs}
+
+                    // SENDING QUESTION FOR BOTH PLAYERS
                     owner.emit("join room", data)
-                    socket.emit("message", "waiting for owner to select question")
+                    socket.emit("join room", data)
                 });
             } else {
                 socket.emit("message", "Room not available")
@@ -123,29 +136,39 @@ io.on('connection', function(socket){
 
     // Question
     socket.on("ask question", function(questionids){
-        var room = db.get('room');
-        console.log(socket.id)
-        console.log(questionids)
-        room.find({owner: socket.id, status:1}, {}, function(e, docs){
-            if(docs.length!=0){
-                //console.log(docs[0])
-                room.update({_id:docs[0]._id},{$set:{questions:questionids}},function(e,d){
-                    //console.log(d)
-                });
+        console.log(socket.id + " has asked " + questionids.length + " questions")
+        var room = db.get("room")
+        other = null;
+        roomid = null
+
+        room.find({owner:socket.id, status:1},{},function(e,docs){
+            if(docs.length != 0){
+                console.log("owner")
+                console.log(docs)
+                roomid = docs[0]._id
                 player = clients[docs[0].player]
-
-                MongoClient.connect(url, function(err, db) {
-                    var question = db.collection('question');
-                    question.find({_id:{$in:questionids}}).toArray(function(err, docs) {
-                        console.log(docs)
-                    });
-
+                room.update({_id:docs[0]._id},{$set:{owner_question:questionids}},function(e,d){
+                    console.log("updated owner questions: " + d)
                 })
-                // var question = db.get('question');
-                // question.find({_id: {$in: questionids}},{},function(e,docs){
-                //     console.log(docs)
-                //     player.emit("ask question", docs)
-                // });
+                if("player_question" in docs[0]){
+                    socket.emit("answer", docs[0].player_question)
+                    player.emit("answer", questionids)
+                }
+            }
+        });
+        room.find({player:socket.id, status:1},{},function(e,docs){
+            if(docs.length != 0){
+                console.log("player")
+                console.log(docs)
+                roomid = docs[0]._id
+                owner = clients[docs[0].owner]
+                room.update({_id:docs[0]._id},{$set:{player_question:questionids}},function(e,d){
+                    console.log("updated player questions: " + d)
+                })
+                if("owner_question" in docs[0]){
+                    socket.emit("answer", questionids)
+                    owner.emit("answer", docs[0].owner_question)
+                }
             }
         });
     });
