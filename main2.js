@@ -13,6 +13,8 @@ var ObjectId = mongodb.ObjectID;
 var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/challenger_documents';
 
+
+
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -29,6 +31,18 @@ app.use(function(req,res,next){
     next();
 });
 app.use(allowCrossDomain);
+
+/*app.get('/', function(req, res){
+    res.send("hi")
+});
+
+app.get('/questions', function(req, res) {
+    var db = req.db;
+    var collection = db.get('question');
+    collection.find({},{},function(e,docs){
+        res.send(docs)
+    });
+});*/
 
 app.get('/rooms', function(req, res) {
     console.log("Lising Rooms")
@@ -68,6 +82,8 @@ io.on('connection', function(socket){
     socket.on('disconnect', function(){
         console.log('user disconnected');
         delete clients[socket.id]
+        // var room = db.get('room');
+        // room.find()
     });
 
     // CREATE ROOM
@@ -189,7 +205,7 @@ io.on('connection', function(socket){
         }
     });
 
-    // Evaluation
+    // Question
     socket.on("submit", function(answers){
         ans_arr = {}
         ques_arr = []
@@ -226,7 +242,6 @@ io.on('connection', function(socket){
                 if(docs[0].player in clients){
                     player = clients[docs[0].player]
                     room.update({_id:docs[0]._id},{$set:{owner_answer:stuff}})
-                    // RESULTS
                     if("player_answer" in docs[0]){
                         other_stuff = docs[0].player_answer
                         total_stuff = {"yours":other_stuff,"mine":stuff}
@@ -247,7 +262,6 @@ io.on('connection', function(socket){
                 if(docs[0].owner in clients){
                     owner = clients[docs[0].owner]
                     room.update({_id:docs[0]._id},{$set:{player_answer:stuff}})
-                    // RESULTS
                     if("owner_answer" in docs[0]){
                         other_stuff = docs[0].owner_answer
                         total_stuff = {"yours":other_stuff,"mine":stuff}
@@ -266,7 +280,12 @@ io.on('connection', function(socket){
 
 });
 
+/*app.post('/', function(req, res){
+    var userName = req.body.userName;
+    res.send("test: " + userName);
+});*/
 
-http.listen(3000, function(){
-    console.log('listening on *:3000');
+
+http.listen(3001, function(){
+    console.log('listening on *:3001');
 });

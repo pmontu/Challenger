@@ -1,0 +1,58 @@
+created room: 565adce2c0eb61862c716105 by uH_eoEi4a6th8e0KAAAD. status: 0
+EIeaFAmIALE9Wlz8AAAC wants to join room 565adce2c0eb61862c716105
+EIeaFAmIALE9Wlz8AAAC has asked 2 questions
+    player
+    [ { _id: 565adce2c0eb61862c716105,
+        owner: 'uH_eoEi4a6th8e0KAAAD',
+        status: 1,
+        player: 'EIeaFAmIALE9Wlz8AAAC' } ]
+    updated player questions: 1
+    uH_eoEi4a6th8e0KAAAD has asked 1 questions
+    owner
+    [ { _id: 565adce2c0eb61862c716105,
+        owner: 'uH_eoEi4a6th8e0KAAAD',
+        status: 1,
+        player: 'EIeaFAmIALE9Wlz8AAAC',
+        player_question: [ '5659cba0ef72b7ef523206a8', '5659cba0ef72b7ef523206a9' ] } ]
+    game starts
+
+updated owner questions: 1
+
+created room: 565adcefc0eb61862c716106 by EIeaFAmIALE9Wlz8AAAC. status: 0
+uH_eoEi4a6th8e0KAAAD wants to join room 565adcefc0eb61862c716106
+uH_eoEi4a6th8e0KAAAD has asked 2 questions
+owner
+[ { _id: 565adce2c0eb61862c716105,
+    owner: 'uH_eoEi4a6th8e0KAAAD',
+    status: 1,
+    player: 'EIeaFAmIALE9Wlz8AAAC',
+    player_question: [ '5659cba0ef72b7ef523206a8', '5659cba0ef72b7ef523206a9' ],
+    owner_question: [ '5659cba0ef72b7ef523206bc' ] } ]
+game starts
+player
+[ { _id: 565adcefc0eb61862c716106,
+    owner: 'EIeaFAmIALE9Wlz8AAAC',
+    status: 1,
+    player: 'uH_eoEi4a6th8e0KAAAD' } ]
+updated owner questions: 1
+updated player questions: 1
+
+created room: 565add89c0eb61862c716107 by EIeaFAmIALE9Wlz8AAAC. status: 0
+uH_eoEi4a6th8e0KAAAD wants to join room 565add89c0eb61862c716107
+uH_eoEi4a6th8e0KAAAD has asked 3 questions
+owner
+[ { _id: 565adce2c0eb61862c716105,
+    owner: 'uH_eoEi4a6th8e0KAAAD',
+    status: 1,
+    player: 'EIeaFAmIALE9Wlz8AAAC',
+    player_question: [ '5659cba0ef72b7ef523206a8', '5659cba0ef72b7ef523206a9' ],
+    owner_question: [ '5659cba0ef72b7ef523206a8', '5659cba0ef72b7ef523206a9' ] } ]
+game starts
+player
+[ { _id: 565add89c0eb61862c716107,
+    owner: 'EIeaFAmIALE9Wlz8AAAC',
+    status: 1,
+    player: 'uH_eoEi4a6th8e0KAAAD' } ]
+updated player questions: 1
+updated owner questions: 1
+
