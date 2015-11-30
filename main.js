@@ -198,8 +198,6 @@ io.on('connection', function(socket){
             ques_arr.push(answer.questionid)
         })
 
-        console.log(ques_arr)
-
         var correct = {1:0,2:0,3:0}, wrong = {1:0,2:0,3:0}
         ques_arr = ques_arr.map(ObjectId);
         var question = db.get("question")
