@@ -16,7 +16,7 @@ angular.module('collaborativeLearning')
 	         });
 	         socket.on("join room",function(room){
 	         	console.log("join room success",room);
-				$state.go("selectquestion", {name:"Player1"});
+				$state.go("selectquestion", {name:"preplane"});
 	           //$scope.roomId = room._id;
 	         });
 });

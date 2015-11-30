@@ -38,7 +38,7 @@ angular.module('collaborativeLearning')
 	     });
 		socket.emit("ask question",sel);
 		console.log("asking questions", sel)
-		angular.element("#playermsg").html("Thanks for sending questions.Please wait for the player to send you the question...");
+		angular.element("#playermsg").html("Thanks for sending questions. Please wait for the hoppr to send you the question...");
 		angular.element(this).attr('disabled','disabled');
 		
       });

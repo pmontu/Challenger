@@ -33,7 +33,7 @@ li {
 .mainmenu {
     font-size: 16px;
     position: relative;
-    margin: 90px auto;
+    margin: 25px auto 35px auto;
     padding: 0;
     text-align: left;
 }
@@ -118,13 +118,13 @@ li {
 
 .submenu li {
     line-height: 20px;
-    height: 35px;
+    /*height: 35px;*/
     margin-left: -40px;
     padding-top: 11px;
     transition: border-left 220ms ease-in;
     border-left: solid 6px #9bbff2;
     background-color: #c8ddfb;
-    padding: 0px 15px;
+    padding: 0px 15px 15px 15px;
 }
 
 .submenu .chosen,

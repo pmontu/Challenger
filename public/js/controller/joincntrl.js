@@ -20,7 +20,7 @@ angular.module('collaborativeLearning')
   			}
 
       socket.on("join room",function(room){
-      $state.go("selectquestion", {name:"Player2"});
+      $state.go("selectquestion", {name:"hoppr"});
       //$scope.roomId = room._id;
       });
   		});
