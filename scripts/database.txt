@@ -1,0 +1,192 @@
+use challenger_documents
+
+db.question.insert({"question":"Radiocarbon is produced in the atmosphere as a result of",
+"choices":[
+"collision between fast neutrons and nitrogen nuclei present in the atmosphere",
+"action of ultraviolet light from the sun on atmospheric oxygen",
+"action of solar radiations particularly cosmic rays on carbon dioxide present in the atmosphere",
+"lightning discharge in atmosphere"],
+"answer":1,
+"level":2})
+
+db.question.insert({"question":"The absorption of ink by blotting paper involves",
+"choices":[
+"viscosity of ink",
+"capillary action phenomenon ",
+"diffusion of ink through the blotting",
+"siphon action"],
+"answer":2,
+"level":2})
+
+db.question.insert({"question":"Siphon will fail to work if",
+"choices":[
+"the densities of the liquid in the two vessels are equal",
+"the level of the liquid in the two vessels are at the same height",
+"both its limbs are of unequal length",
+"the temperature of the liquids in the two vessels are the same"],
+"answer":2,
+"level":3})
+
+db.question.insert({"question":"Nuclear sizes are expressed in a unit named",
+"choices":[
+"Fermi",
+"angstrom",
+"newton",
+"tesla"],
+"answer":1,
+"level":3})
+
+db.question.insert({"question":"Light from the Sun reaches us in nearly",
+"choices":[
+"2 minutes",
+"4 minutes",
+"8 minutes",
+"16 minutes"],
+"answer":3,
+"level":1})
+
+db.question.insert({"question":"Stars appears to move from east to west because",
+"choices":[
+"all stars move from east to west",
+"the earth rotates from west to east",
+"the earth rotates from east to west",
+"the background of the stars moves from west to east"],
+"answer":2,
+"level":3})
+
+db.question.insert({"question":"Pa(Pascal) is the unit for",
+"choices":[
+"thrust",
+"pressure",
+"frequency",
+"onductivity"],
+"answer":2,
+"level":1})
+
+db.question.insert({"question":"Let a thin capillary tube be replaced with another tube of insufficient length then, we find water",
+"choices":[
+"will overflow",
+"will not rise",
+"depressed",
+"hange its meniscus"],
+"answer":2,
+"level":2})
+
+db.question.insert({"question":"Rectifiers are used to convert",
+"choices":[
+"Direct current to Alternating current",
+"Alternating current to Direct current",
+"high voltage to low voltage",
+"low voltage to high voltage"],
+"answer":2,
+"level":3})
+
+db.question.insert({"question":"On a rainy day, small oil films on water show brilliant colours. This is due to",
+"choices":[
+"dispersion",
+"interference",
+"diffraction",
+"polarization"],
+"answer":2,
+"level":1})
+
+db.question.insert({"question":"The nucleus of an atom consists of",
+"choices":["electrons and neutrons","electrons and protons","protons and neutrons","All of the above"],
+"answer":"3",
+"level":1})
+
+db.question.insert({"question":"The number of moles of solute present in 1 kg of a solvent is called its",
+"choices":["molality","molarity","normality","formality"],
+"answer":"1",
+"level":2})
+
+db.question.insert({"question":"The most electronegative element among the following is",
+"choices":["sodium","bromine","fluorine","oxygen"],
+"answer":"3",
+"level":3})
+
+db.question.insert({"question":"The metallurgical process in which a metal is obtained in a fused state is called ",
+"choices":["smelting","roasting","calcinations","froth floatation"],
+"answer":"1",
+"level":1})
+
+db.question.insert({"question":"The molecules of which gas have highest speed? ",
+"choices":["H2 at -73oC","CH4 at 300 K","N2 at 1,027oC","O2 at 0oC"],
+"answer":"1",
+"level":2})
+
+db.question.insert({"question":"The law which states that the amount of gas dissolved in a liquid is proportional to its partial pressure is ",
+"choices":["Dalton's law","Gay Lussac's law","Henry's law","Raoult's law"],
+"answer":"3",
+"level":3})
+
+db.question.insert({"question":"The gas present in the stratosphere which filters out some of the sun's ultraviolet light and provides an effective shield against radiation damage to living things is ",
+"choices":["helium","ozone","oxygen","methane"],
+"answer":"2",
+"level":1})
+
+db.question.insert({"question":"The most commonly used bleaching agent is ",
+"choices":["alcohol","carbon dioxide","chlorine","sodium chlorine"],
+"answer":"3",
+"level":2})
+
+db.question.insert({"question":"The nucleus of a hydrogen atom consists of ",
+"choices":["1 proton only","1 proton + 2 neutron","1 neutron only","1 electron only"],
+"answer":"1",
+"level":3})
+
+db.question.insert({"question":"The metal that is used as a catalyst in the hydrogenation of oils is ",
+"choices":["Ni","Pb","Cu","Pt"],
+"answer":"1",
+"level":1})
+
+
+db.question.insert({"question":"If in a frequently distribution, the mean and median are 21 and 22 respectively, then its mode is approximately",
+"choices":["22.0","20.5","25.5","24.0"],
+"answer":"4",
+"level":2})
+
+db.question.insert({"question":"The area of the region bounded by the curves y = |x – 2|, x = 1, x = 3 and the x-axis is",
+"choices":["1","2","3","4"],
+"answer":"1",
+"level":3})
+
+db.question.insert({"question":"Let A (2, –3) and B(–2, 1) be vertices of a triangle ABC. If the centroid of this triangle moves on the line 2x + 3y = 1, then the locus of the vertex C is the line",
+"choices":["2x + 3y = 9","2x – 3y = 7","3x + 2y = 5","3x – 2y = 3"],
+"answer":"1",
+"level":1})
+
+db.question.insert({"question":"Distance between two parallel planes 2x + y + 2z = 8 and 4x + 2y + 4z + 5 = 0 is ",
+"choices":["3/2","5/2","7/2","9/2"],
+"answer":"3",
+"level":2})
+
+db.question.insert({"question":" If the straight lines x = 1 + s, y = –3 – Ks, z = 1 + ls and x = , y = 1 + t, z = 2 – t with parameters s and t respectively, are co-planar then K equals ",
+"choices":["-2","-1","-1/2","0"],
+"answer":"1",
+"level":3})
+
+db.question.insert({"question":"The mean and the variance of a binomial distribution are 4 and 2 respectively. Then the probability of 2 successes is ",
+"choices":["37/256","219/256","128/256","28/256"],
+"answer":"4",
+"level":1})
+
+db.question.insert({"question":"The equation of the straight line passing through the point (4, 3) and making intercepts on the co-ordinate axes whose sum is –1 is ",
+"choices":["x/2 + y/3 = -1 and x/-2 + y/1 = -1","x/2 - y/3 = -1 and x/-2 + y/1 = -1","x/2 + y/3 = 1 and x/2 + y/1 = 1","x/2 - y/3 = 1 and x/-2 + y/1 = 1"],
+"answer":"4",
+"level":2})
+
+db.question.insert({"question":"Suppose a population A has 100 observations 101, 102, … , 200, and another population B has 100 observations 151, 152, … , 250. If VA and VB represent the variances of the two populations, respectively, then VA/VB is ",
+"choices":["1","9/4","4/9","2/3"],
+"answer":"1",
+"level":3})
+
+db.question.insert({"question":"The number of values of x in the interval [0, 3π] satisfying the equation 2sin2x + 5sinx − 3 = 0 is ",
+"choices":["4","6","1","2"],
+"answer":"1",
+"level":1})
+
+db.question.insert({"question":"A body falling from rest under gravity passes a certain point P. It was at a distance of 400 m from P, 4s prior to passing through P. If g = 10 m/s2, then the height above the point P from where the body began to fall is ",
+"choices":["720 m","900 m","320 m","680 m"],
+"answer":"1",
+"level":2})
