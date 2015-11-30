@@ -1,4 +1,3 @@
-<!-- Client for testing Socket.io nodejs server-->
 <!doctype html>
 <html>
 <head>
@@ -15,7 +14,7 @@
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script>
-    var socket = io();
+    var socket = io("http://localhost:3001");
 
     socket.on("chat", function(msg){
       $('#messages').append($('<li>').text(msg));
@@ -34,7 +33,7 @@
       $('#messages').append($('<li>').text(data.playerid+" joined"));
     });
     socket.on("close", function(stuff){
-      alert("done. View console for scores")
+      alert("done")
       console.log(stuff)
     })
 
