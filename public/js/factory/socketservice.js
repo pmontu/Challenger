@@ -10,7 +10,6 @@
 angular.module('collaborativeLearning')
   .factory('socket', function ($rootScope) {
    console.log("socket factory")
-  // var socket = io("http://192.168.0.86:3000");
   var socket = io();  
    return {
      on: function (eventName, callback) {

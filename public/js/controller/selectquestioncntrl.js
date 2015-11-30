@@ -20,7 +20,7 @@
  	$scope.mediumid = [];
  	$scope.hardid = [];
 
- 	$http.get("http://localhost:3000/questions").then(function(res){
+ 	$http.get("/questions").then(function(res){
  		angular.forEach(res.data, function(value,key) {
  			level+= value.level+",";	
 
@@ -62,7 +62,7 @@ angular.module('collaborativeLearning')
 	     angular.forEach(questionid,function(value,key){
 	     	answerqnId.push({'_id':value});
 	     });
-	     $http.get("http://localhost:3000/questions").then(function(res){
+	     $http.get("/questions").then(function(res){
 	     	allqst = res.data;
 	     	selectQ = _.filter(allqst, function(val){
 	     		return _.some(this,function(val2){
