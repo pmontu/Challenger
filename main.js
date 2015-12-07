@@ -230,6 +230,7 @@ io.on('connection', function(socket){
                         room.update({_id:roomid},{$set:{status:3}},function(e,d){
                             console.log("updated room status to 3(over): " + d)
                         })
+                        console.log("game over owner",stuff,other_stuff)
                         socket.emit("close", {"yours":other_stuff,"mine":stuff})
                         player.emit("close", {"yours":stuff,"mine":other_stuff})
                     }
@@ -250,7 +251,8 @@ io.on('connection', function(socket){
                         room.update({_id:roomid},{$set:{status:3}},function(e,d){
                             console.log("updated room status to 3(over): " + d)
                         })
-                        owner.emit("close", {"yours":stuff,"mine":stuff})
+                        console.log("game over player",stuff,other_stuff)
+                        owner.emit("close", {"yours":stuff,"mine":other_stuff})
                         socket.emit("close", {"yours":other_stuff,"mine":stuff})
                     }
                 } else {
